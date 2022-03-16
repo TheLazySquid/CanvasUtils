@@ -1,0 +1,49 @@
+{
+    "name": "Canvas Utils",
+    "description": "Making a garbage platform that little bit more bearable",
+    "version": "0.5.3",
+    "manifest_version": 3,
+    "permissions": [
+        "storage"
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "/images/canbas16.png",
+            "32": "/images/canbas32.png",
+            "48": "/images/canbas48.png",
+            "128": "/images/canbas128.png"
+        }
+    },
+    "icons": {
+        "16": "/images/canbas16.png",
+        "32": "/images/canbas32.png",
+        "48": "/images/canbas48.png",
+        "128": "/images/canbas128.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*.instructure.com/*"
+            ],
+            "js": [
+                "featureScripts/fakeemail.js",
+                "featureScripts/getUserSettings.js",
+                "featureScripts/hideoverdue.js",
+                "featureScripts/blockuser.js",
+                "featureScripts/darktheme.js",
+                "featureScripts/smallmodules.js",
+                "featureScripts/dashboard.js"
+            ]
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": ["darktheme.css"],
+            "matches": ["*://*.instructure.com/*"]
+        }
+    ],
+    "background": {
+        "service_worker": "background.js"
+    }
+}
