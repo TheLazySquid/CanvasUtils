@@ -1,0 +1,13 @@
+*:not(.ic-DashboardCard__header_hero, .ic-DashboardCard__action-badge, .unread_count, .menu-item__text, .submit_assignment_link, .nav-badge, 
+.menu-item__badge, .menu-item__badge > span, .ic-DashboardCard__action-layout, #tinymce > p, #gotopage){
+    background-color: #1A1A1B !important;
+    color: #d7dadc !important;
+}
+
+.menu-item__text{
+    color: rgb(209, 209, 209) !important;
+}
+
+#tinymce > p{
+    color: rgb(209, 209, 209) !important;
+}
