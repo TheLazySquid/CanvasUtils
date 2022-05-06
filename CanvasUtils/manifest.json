@@ -1,7 +1,7 @@
 {
     "name": "Canvas Utils",
     "description": "Making a garbage platform that little bit more bearable",
-    "version": "0.5.3",
+    "version": "0.7.4",
     "manifest_version": 3,
     "permissions": [
         "storage"
@@ -33,7 +33,11 @@
                 "featureScripts/blockuser.js",
                 "featureScripts/darktheme.js",
                 "featureScripts/smallmodules.js",
-                "featureScripts/dashboard.js"
+                "featureScripts/dashboard.js",
+                "featureScripts/announceinbox.js",
+                "featureScripts/hidenotifs.js",
+                "featureScripts/hideec.js",
+                "featureScripts/gotopage.js"
             ]
         }
     ],

@@ -1,24 +1,37 @@
-document.getElementById("fakeEmail").addEventListener("change", () => {
-  chrome.storage.sync.set({fakeEmail: document.getElementById("fakeEmail").checked})
+const toggles = [
+  {value: 'fakeEmail', text: 'Toggle client-side messages being sent when escape is hit on a message'},
+  {value: 'hideOverdue', text: 'Moves overdue assignments to the bottom of the list'},
+  {value: 'closeModules', text: 'Collapses modules by default upon the page load'},
+  {value: 'dark', text: 'Adds a very dark theme to canvas, reload for changes to apply.'},
+  {value: 'autoAssignment', text: 'Dashboard links go directly to that course\'s assignment tab'},
+  {value: 'announceInbox', text: 'Announcements appear in your inbox rather than on courses, may be buggy'},
+  {value: 'hideEC', text: 'Hides extra credit assignments from the grades page'}
+]
+
+chrome.storage.sync.get(toggles.map(toggle => toggle.value), (value) => {
+  for(let toggle of toggles){
+    let row = document.createElement("div")
+    row.innerHTML = `
+    <label class="switch">
+      <input type="checkbox" id="${toggle.value}">
+      <span class="slider round"></span>
+    </label>
+    <span class="description">${toggle.text}</span>
+    <hr>`
+    row.querySelector(`#${toggle.value}`).checked = value[toggle.value];
+    row.querySelector(`#${toggle.value}`).addEventListener("change", () => {
+      let activate = row.querySelector(`#${toggle.value}`).checked;
+      chrome.storage.sync.set({[toggle.value]: activate})
+    })
+    document.getElementById("toggles").appendChild(row);
+  }
 })
-document.getElementById("hideOverdue").addEventListener("change", () => {
-  chrome.storage.sync.set({hideOverdue: document.getElementById("hideOverdue").checked})
+
+chrome.storage.sync.get(['blockedUsers'], (value) => {
+  document.getElementById("blockedUsers").value = value.blockedUsers;
 })
 document.getElementById("blockedUsers").addEventListener("change", () => {
   chrome.storage.sync.set({blockedUsers: document.getElementById("blockedUsers").value})
-})
-document.getElementById("darkTheme").addEventListener("change", () => {
-  chrome.storage.sync.set({dark: document.getElementById("darkTheme").checked})
-})
-document.getElementById("closeModules").addEventListener("change", () => {
-  chrome.storage.sync.set({closeModules: document.getElementById("closeModules").checked})
-})
-chrome.storage.sync.get(['fakeEmail', 'hideOverdue', 'blockedUsers', 'dark', 'closeModules'], (value) => {
-  document.getElementById("fakeEmail").checked = value.fakeEmail;
-  document.getElementById("hideOverdue").checked = value.hideOverdue;
-  document.getElementById("blockedUsers").value = value.blockedUsers;
-  document.getElementById("darkTheme").checked = value.dark;
-  document.getElementById("closeModules").checked = value.closeModules;
 })
 
 document.getElementById("profile").addEventListener("click", () => {

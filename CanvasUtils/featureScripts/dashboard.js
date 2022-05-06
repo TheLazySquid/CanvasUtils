@@ -1,5 +1,5 @@
 function changeHref(){
-    if(!location.href.endsWith("instructure.com")) return;
+    if(!location.href.endsWith("instructure.com/")) return;
     let cards = document.querySelectorAll(".ic-DashboardCard__link");
     for(let card of cards){
         if(card.href.endsWith("/assignments")) continue;
@@ -8,4 +8,6 @@ function changeHref(){
     window.requestAnimationFrame(changeHref);
 }
 
-changeHref()
+chrome.storage.sync.get(['autoAssignment'], (value) => {
+    if(value.autoAssignment) changeHref()
+})
