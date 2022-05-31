@@ -29,15 +29,14 @@
             "js": [
                 "featureScripts/fakeemail.js",
                 "featureScripts/getUserSettings.js",
-                "featureScripts/hideoverdue.js",
                 "featureScripts/blockuser.js",
                 "featureScripts/darktheme.js",
                 "featureScripts/smallmodules.js",
                 "featureScripts/dashboard.js",
                 "featureScripts/announceinbox.js",
                 "featureScripts/hidenotifs.js",
-                "featureScripts/hideec.js",
-                "featureScripts/gotopage.js"
+                "featureScripts/gotopage.js",
+                "featureScripts/hide.js"
             ]
         }
     ],

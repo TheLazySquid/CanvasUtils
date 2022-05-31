@@ -14,5 +14,5 @@ function applyToIframes(){
     document.querySelectorAll('iframe').forEach(iframe => {
         iframe?.contentDocument?.head?.appendChild(css?.cloneNode(true));
     })
-    setTimeout(applyToIframes, 1000);
+    window.setTimeout(applyToIframes, 1000);
 }

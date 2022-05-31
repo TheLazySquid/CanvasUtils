@@ -1,11 +1,32 @@
+document.querySelector('#hiders').addEventListener('click', function(e) {
+  let pages = document.querySelectorAll('.page');
+  //hide the pages
+  for (let i = 0; i < pages.length; i++) {
+    pages[i].classList.remove('active');
+  }
+  document.querySelector('#hideToggles').classList.add('active');
+});
+document.querySelector('.back').addEventListener('click', function(e) {
+  let pages = document.querySelectorAll('.page');
+  //hide the pages
+  for (let i = 0; i < pages.length; i++) {
+    pages[i].classList.remove('active');
+  }
+  document.querySelector('#mainPage').classList.add('active');
+});
+
+//don't touch this, it's a mess
 const toggles = [
-  {value: 'fakeEmail', text: 'Toggle client-side messages being sent when escape is hit on a message'},
-  {value: 'hideOverdue', text: 'Moves overdue assignments to the bottom of the list'},
-  {value: 'closeModules', text: 'Collapses modules by default upon the page load'},
-  {value: 'dark', text: 'Adds a very dark theme to canvas, reload for changes to apply.'},
-  {value: 'autoAssignment', text: 'Dashboard links go directly to that course\'s assignment tab'},
-  {value: 'announceInbox', text: 'Announcements appear in your inbox rather than on courses, may be buggy'},
-  {value: 'hideEC', text: 'Hides extra credit assignments from the grades page'}
+  {value: 'fakeEmail', text: 'Toggle client-side messages being sent when escape is hit on a message', tab: 'mainPage'},
+  {value: 'hideOverdue', text: 'Moves overdue assignments to the bottom of the list', tab: 'hideToggles'},
+  {value: 'closeModules', text: 'Collapses modules by default upon the page load', tab: 'mainPage'},
+  {value: 'dark', text: 'Adds a very dark theme to canvas, reload for changes to apply.', tab: 'mainPage'},
+  {value: 'autoAssignment', text: 'Dashboard links go directly to that course\'s assignment tab', tab: 'mainPage'},
+  {value: 'announceInbox', text: 'Announcements appear in your inbox rather than on courses, may be buggy', tab: 'mainPage'},
+  {value: 'hideEC', text: 'Hides extra credit assignments from the grades page', tab: 'hideToggles'},
+  {value: 'hideLate', text: 'Hides the late tag from assignments on the grades page', tab: 'hideToggles'},
+  {value: 'hideMissing', text: 'Hides the missing tag from the grades page', tab: 'hideToggles'},
+  {value: 'hideAnnouncements', text: 'Hide announcements on courses and dashboard', tab: 'hideToggles'},
 ]
 
 chrome.storage.sync.get(toggles.map(toggle => toggle.value), (value) => {
@@ -23,7 +44,7 @@ chrome.storage.sync.get(toggles.map(toggle => toggle.value), (value) => {
       let activate = row.querySelector(`#${toggle.value}`).checked;
       chrome.storage.sync.set({[toggle.value]: activate})
     })
-    document.getElementById("toggles").appendChild(row);
+    document.getElementById(toggle.tab).querySelector(".toggles").appendChild(row);
   }
 })
 
