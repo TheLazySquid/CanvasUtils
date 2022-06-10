@@ -27,6 +27,7 @@ const toggles = [
   {value: 'hideLate', text: 'Hides the late tag from assignments on the grades page', tab: 'hideToggles'},
   {value: 'hideMissing', text: 'Hides the missing tag from the grades page', tab: 'hideToggles'},
   {value: 'hideAnnouncements', text: 'Hide announcements on courses and dashboard', tab: 'hideToggles'},
+  {value: 'hideLinkBar', text: 'Hides all the things below a class on the dashboard', tab: 'hideToggles'}
 ]
 
 chrome.storage.sync.get(toggles.map(toggle => toggle.value), (value) => {

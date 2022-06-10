@@ -1,4 +1,4 @@
-chrome.storage.sync.get(['hideOverdue', 'hideEC', 'hideLate', 'hideMissing', 'hideAnnouncements'], (value) => {
+chrome.storage.sync.get(['hideOverdue', 'hideEC', 'hideLate', 'hideMissing', 'hideAnnouncements', 'hideLinkBar'], (value) => {
     if(value.hideEC) run();
     if(value.hideOverdue) deleteOverdue()
     if(value.hideMissing){
@@ -14,10 +14,20 @@ chrome.storage.sync.get(['hideOverdue', 'hideEC', 'hideLate', 'hideMissing', 'hi
         }
     }
     if(value.hideAnnouncements){
-        let announcements = document.querySelectorAll(".announcements");
-        for(let announcement of announcements){
-            announcement.remove();
-        }
+        window.addEventListener("load", () => {
+            let announcements = document.querySelectorAll(".announcements");
+            for(let announcement of announcements){
+                announcement.remove();
+            }
+        });
+    }
+    if(value.hideLinkBar){
+        window.addEventListener("load", () => {
+            let linkBar = document.querySelectorAll(".ic-DashboardCard__action-container");
+            linkBar.forEach(link => {
+                link.remove();
+            });
+        });
     }
 })
 

@@ -1,5 +1,5 @@
 chrome.runtime.onInstalled.addListener(() => {
-    chrome.storage.sync.get(['blockedUsers', 'hideOverdue', 'fakeEmail', 'pfp', 'name', 'dark', 'closeModules', 'autoAssignment', 'announceInbox', 'hideEC', 'hideLate', 'hideMissing', 'hideAnnouncements'], (value) => {
+    chrome.storage.sync.get(['blockedUsers', 'hideOverdue', 'fakeEmail', 'pfp', 'name', 'dark', 'closeModules', 'autoAssignment', 'announceInbox', 'hideEC', 'hideLate', 'hideMissing', 'hideAnnouncements', 'hideLinkBar'], (value) => {
         chrome.storage.sync.set({
             blockedUsers: value.blockedUsers ?? "", 
             hideOverdue: value.hideOverdue ?? true, 
@@ -14,6 +14,7 @@ chrome.runtime.onInstalled.addListener(() => {
             hideLate: value.hideLate ?? false,
             hideMissing: value.hideMissing ?? false,
             hideAnnouncements: value.hideAnnouncements ?? false,
+            hideLinkBar: value.hideLinkBar ?? false
         })
     })
 });
