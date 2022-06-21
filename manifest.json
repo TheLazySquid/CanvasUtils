@@ -43,7 +43,9 @@
     "web_accessible_resources": [
         {
             "resources": ["darktheme.css"],
-            "matches": ["*://*.instructure.com/*"]
+            "matches": [
+                "*://*.instructure.com/*"
+            ]
         }
     ],
     "background": {

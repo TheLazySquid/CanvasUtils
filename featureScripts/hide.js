@@ -14,12 +14,14 @@ chrome.storage.sync.get(['hideOverdue', 'hideEC', 'hideLate', 'hideMissing', 'hi
         }
     }
     if(value.hideAnnouncements){
-        window.addEventListener("load", () => {
-            let announcements = document.querySelectorAll(".announcements");
-            for(let announcement of announcements){
-                announcement.remove();
-            }
-        });
+        if(!location.href.endsWith("/announcements")){
+            window.addEventListener("load", () => {
+                let announcements = document.querySelectorAll(".announcements");
+                for(let announcement of announcements){
+                    announcement.remove();
+                }
+            });
+        }
     }
     if(value.hideLinkBar){
         window.addEventListener("load", () => {
